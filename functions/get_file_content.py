@@ -1,7 +1,6 @@
 import os
 
 def get_file_content(working_directory: str, file_path: str) -> str:
-    import os
     try:
         abs_working_directory = os.path.abspath(working_directory)
         full_file_path = os.path.normpath(os.path.join(abs_working_directory, file_path))
@@ -19,3 +18,23 @@ def get_file_content(working_directory: str, file_path: str) -> str:
         return file_content_string
     except Exception as e:
         return f'Error: {str(e)}'
+
+
+schema_get_file_content = {
+    "type": "function",
+    "function": {
+        "name": "get_file_content",
+        "description": "Retrieves the content of a specified file relative to the working directory",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "required": ["file_path"],
+                "file_path": {
+                    "type": "string",
+                    "description": "Path to the file to read, relative to the working directory",
+                },
+            },
+        },
+    },
+}
+

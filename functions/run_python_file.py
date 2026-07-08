@@ -17,6 +17,7 @@ def run_python_file(
         elif not file_path.endswith(".py"):
             return f'Error: "{file_path}" is not a Python file'
 
+
         command = ["python", absolute_file_path] + (args if args else [])
         process = subprocess.run(command, text=True, capture_output=True)
 
@@ -32,3 +33,29 @@ def run_python_file(
 
     except Exception as e:
         return f"Error: executing Python file: {e}"
+    
+
+schema_run_python_file = {
+    "type": "function",
+    "function": {
+        "name": "run_python_file",
+        "description": "Executes a Python file in a specified working directory with optional arguments",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "required": ["file_path"],
+                "file_path": {
+                    "type": "string",
+                    "description": "Path to the Python file to execute, relative to the working directory",
+                },
+                "args": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Optional arguments for the Python file",
+                },
+            },
+        },
+    },
+}   
