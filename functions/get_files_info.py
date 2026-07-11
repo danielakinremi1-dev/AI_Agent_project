@@ -1,7 +1,7 @@
 import os
 
 def get_files_info(working_directory: str, directory: str = ".") -> str:
-    print(f"Result for current directory:")
+    
     try:
         
         absworking_directory = os.path.abspath(working_directory)
